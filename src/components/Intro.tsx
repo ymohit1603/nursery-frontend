@@ -7,8 +7,8 @@ export const Intro = () => {
                 <div className="text-5xl font-bold mb-4">Discover the Perfect Plants for Your Home</div>
                 <div className="text-xl mb-3 text-slate-600">Browse our curated selection of lush, healthy plants and connect with your nearest plantly verified nursery to find the ideal greenery for your space.</div>
                 <div className="flex space-x-4 mb-6 mt-10">
-                    <button className="bg-black text-white py-2 px-4 rounded-md hover:bg-blue-700">Browse Plants</button>
-                    <button className="bg-black text-white py-2 px-4 rounded-md hover:bg-green-700">Browse Nurseries</button>
+                    <button className="bg-black text-white py-2 px-4 rounded-md hover:bg-slate-800">Browse Plants</button>
+                    <button className="bg-black text-white py-2 px-4 rounded-md hover:bg-slate-800">Browse Nurseries</button>
                 </div>
             </div>
 
