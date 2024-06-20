@@ -16,7 +16,7 @@ export const NavBar = () => {
             </div>
         </div>
     );
-}
+};
 
 interface AddNavBarTypes {
     linkTo: string;
@@ -32,5 +32,3 @@ function AddNavBar({ linkTo, val }: AddNavBarTypes) {
         </div>
     );
 }
-
-
