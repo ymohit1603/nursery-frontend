@@ -26,7 +26,7 @@ export const PlantCategories = () => {
   ];
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white p-6 pt-0 ">
+    <div className="flex justify-center items-center min-h-screen bg-slate-100 p-6 pt-0 ">
       <div className="p-8 rounded-lg  max-w-5xl w-full">
         <div className="text-center mb-10">
           <h1 className="text-5xl font-bold text-gray-800">Explore Plant Categories</h1>
