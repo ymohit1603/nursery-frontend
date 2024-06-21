@@ -12,7 +12,7 @@ export const PlantMedicines:React.FC<PlantMedicinesTypes> = ({ title, descriptio
             <div className="flex justify-center items-center min-h-screen">
                 <div className="flex flex-row justify-center items-center space-x-4">
                     <div className="lg:max-w-lg p-4  ">
-                        <h1 className="text-5xl font-bold mb-4">{title}</h1>
+                        <h1 className="text-5xl font-bold mb-8">{title}</h1>
                         <div className="text-gray-600 text-lg mb-4">{description}</div>
                         <div className="text-gray-900 text-lg my-4">
                         Can't decide which fertilizer to buy? Consult with our professionals for expert advice.

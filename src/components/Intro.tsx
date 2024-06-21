@@ -2,7 +2,7 @@ import homeNurseryImage from '../assets/homeNursery.png';
 
 export const Intro = () => {
     return (
-        <div className="p-4 flex flex-col md:flex-row items-center md:items-start m-10 mt-16 mb-0 md:h-screen">
+        <div className="p-4 flex flex-col md:flex-row items-center md:items-start m-10 mt-16 mb-0 md:h-screen max-h-screen">
             <div className="w-2/3 ml-10 pl-6 p-3 md:mr-5 flex flex-col justify-center">
                 <div className="text-5xl font-bold mb-4">Discover the Perfect Plants for Your Home</div>
                 <div className="text-xl mb-3 text-slate-600">Browse our curated selection of lush, healthy plants and connect with your nearest plantly verified nursery to find the ideal greenery for your space.</div>
