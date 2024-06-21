@@ -71,7 +71,7 @@ interface LabelledInputType {
 
 function LabelledInput({ label, placeholder, value, onChange }: LabelledInputType) {
     return (
-        <div className="p-3 ml-3 w-full">
+        <div className="p-3 w-full">
             <div className="mb-3">{label}</div>
             <div>
                 <input
