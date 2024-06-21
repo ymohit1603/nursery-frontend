@@ -11,8 +11,7 @@ export const Intro = () => {
                     <button className="bg-black text-white py-2 px-4 rounded-md hover:bg-slate-800">Browse Nurseries</button>
                 </div>
             </div>
-
-                <img src={homeNurseryImage} alt="Nursery" className="w-full max-h-80 object-contain rounded" />
+            <img src={homeNurseryImage} alt="Nursery" className="w-full max-h-80 object-contain rounded" />
         </div>
     );
 };
