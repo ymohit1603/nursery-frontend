@@ -1,34 +1,46 @@
-
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export const NavBar = () => {
-    return (
-        <div className="flex justify-between items-center p-4 font-semibold">
-            <div className="flex-1">
-                <Link to="/">Logo</Link>
-            </div>
-            <div className="flex-1 flex justify-end space-x-4">
-                <AddNavBar linkTo="/plants" val="Plants" />
-                <AddNavBar linkTo="/medicines" val="Medicines" />
-                <AddNavBar linkTo="/nursery" val="Nursery" />
-                <AddNavBar linkTo="/about" val="About" />
-                <AddNavBar linkTo="/contact" val="Contact" />
-            </div>
-        </div>
-    );
+    return (<motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex justify-between items-center p-4 font-semibold"
+    >
+      <div className="flex-1">
+        <Link to="/" className="text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors duration-300">
+          Logo
+        </Link>
+      </div>
+      <div className="flex-1 flex justify-end space-x-4">
+        <AddNavBar linkTo="/plants" val="Plants" />
+        <AddNavBar linkTo="/medicines" val="Medicines" />
+        <AddNavBar linkTo="/nursery" val="Nursery" />
+        <AddNavBar linkTo="/about" val="About" />
+        <AddNavBar linkTo="/contact" val="Contact" />
+      </div>
+    </motion.div>
+  );
 };
 
-interface AddNavBarTypes {
-    linkTo: string;
-    val: string;
+interface AddNavBarProps {
+  linkTo: string;
+  val: string;
 }
 
-function AddNavBar({ linkTo, val }: AddNavBarTypes) {
-    return (
-        <div>
-            <Link to={linkTo} className="hover:text-gray-400">
-                {val}
-            </Link>
-        </div>
-    );
-}
+const AddNavBar: React.FC<AddNavBarProps> = ({ linkTo, val }) => {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className="relative"
+    >
+      <Link to={linkTo} className="text-gray-800 hover:text-gray-600 transition-colors duration-300">
+        {val}
+      </Link>
+    </motion.div>
+  );
+};
+
