@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import homeNurseryImage from '../assets/homeNursery.png';
+import homeNurseryImage from '../../assets/homeNursery.png';
 
 
 export const Intro = () => {

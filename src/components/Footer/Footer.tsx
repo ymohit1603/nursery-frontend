@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import footerbg1 from "../assets/footer3.jpg";
+import footerbg1 from "../../assets/footer3.jpg";
 
 export const Footer = () => {
     return (
