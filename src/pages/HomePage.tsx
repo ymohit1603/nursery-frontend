@@ -1,3 +1,4 @@
+import { Footer } from '../components/Footer';
 import { Intro } from '../components/Intro';
 import { NavBar } from '../components/NavBar';
 import { NearestNursery } from '../components/NearestNursery';
@@ -27,6 +28,7 @@ export const HomePage = () => {
             <PlantCategories />
             <PlantMedicines title={MedicineValues.title} description={MedicineValues.description} imageUrl={MedicineValues.imageUrl} buttonText={MedicineValues.buttonText} />
             <NearestNursery title={NurseryValues.title} Description={NurseryValues.Description} placeholder={NurseryValues.placeholder} buttonText={NurseryValues.buttonText} />
+            <Footer/>
         </div>
     );
 };
