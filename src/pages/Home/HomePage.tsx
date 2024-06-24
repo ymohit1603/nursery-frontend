@@ -1,9 +1,9 @@
-import { Footer } from '../components/Footer/Footer';
-import { Intro } from '../components/HomePage/Intro';
-import { NavBar } from '../components/NavBar/NavBar';
-import { NearestNursery } from '../components/HomePage/NearestNursery';
-import { PlantCategories } from '../components/HomePage/PlantCategories';
-import { PlantMedicines } from '../components/HomePage/PlantMedicines';
+import { Footer } from '../../components/Footer/Footer';
+import { Intro } from '../../components/HomePage/Intro';
+import { NavBar } from '../../components/NavBar/NavBar';
+import { NearestNursery } from '../../components/HomePage/NearestNursery';
+import { PlantCategories } from '../../components/HomePage/PlantCategories';
+import { PlantMedicines } from '../../components/HomePage/PlantMedicines';
 
 const MedicineValues = 
 {
