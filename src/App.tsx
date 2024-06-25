@@ -4,6 +4,7 @@ import Signin from "./pages/Auth/Signin"
 import { HomePage } from "./pages/Home/HomePage";
 import { Plants } from "./pages/Plants";
 import { Medicines } from "./pages/Medicines";
+import { ContactUs } from "./pages/contact";
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
           <Route path="/signup" element={<Signup />}/>
           <Route path="/signin" element={<Signin />} />
           <Route path="/plants" element={<Plants />} />
-          <Route path="/medicines" element={<Medicines />}/>
+          <Route path="/medicines" element={<Medicines />} />
+          <Route path="/contact" element={ <ContactUs/>} />
         </Routes>
       </BrowserRouter>
     </div>

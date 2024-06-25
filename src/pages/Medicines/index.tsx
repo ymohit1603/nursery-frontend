@@ -1,12 +1,10 @@
 import { AllMedicines } from "../../components/AllMeds"
-import { Footer } from "../../components/Footer/Footer"
-import { NavBar } from "../../components/NavBar/NavBar"
+import Layout from "../../components/Layout"
+
 
 
 export const Medicines = () => {
-    return <div>
-        <NavBar/>
+    return <Layout>
         <AllMedicines />
-        <Footer/>
-    </div>
+        </Layout>
 }
