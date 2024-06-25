@@ -1,5 +1,5 @@
 import ContactBody  from "../../components/Contact/ContactBody"
-import Layout from "../../components/Layout"
+import { NavBar } from "../../components/NavBar/NavBar"
 
 
 const contactVal =
@@ -12,7 +12,10 @@ const contactVal =
 
 
 export const ContactUs = () => {
-    return <Layout>
+    return <div>
+        <NavBar/>
         <ContactBody title={contactVal.title} description={contactVal.description} bottomDescription={contactVal.bottomDescription}/>
-        </Layout>
+    </div>
+    
+        
 }

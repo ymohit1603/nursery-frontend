@@ -1,5 +1,6 @@
 import React from 'react';
 import ContactCard from './contactCard';
+import ContactForm from './contactForm';
 
 interface ContactTypes {
     title: string;
@@ -31,15 +32,15 @@ const cardValues: ContactCardType[] = [
 
 const ContactBody: React.FC<ContactTypes> = ({ title, description, bottomDescription }) => {
     return (
-       <div className="w-screen h-screen mx-auto mt-5 p-6 rounded-lg shadow-md">
+       <div className=" mx-auto mt-5 p-6 rounded-lg shadow-md">
           <div className="flex justify-center">
             <div className=" max-w-2xl items-center text-center mb-4">
                 <div className="text-5xl font-bold mb-5 ">{title}</div>
                 <div className="text-gray-600">{description}</div>
              </div>
              </div>
-          <div className='flex flex-row mt-5'>
-            <div className="max-w-lg space-y-4">
+          <div className='flex flex-row justify-around mt-5'>
+            <div className="max-w-xl space-y-4">
                   {cardValues.map((values, index) => (
                      <ContactCard
                            key={index}
@@ -51,7 +52,7 @@ const ContactBody: React.FC<ContactTypes> = ({ title, description, bottomDescrip
                   ))}
              </div>
              <div>
-                
+               <ContactForm />
              </div>
           </div>
           <div className='flex justify-center mt-8'>
