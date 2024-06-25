@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { NavBar } from "../NavBar/NavBar"
 import { BuyPlantCard } from "../card/BuyPlantCard";
 import axios from "axios";
 
@@ -32,7 +31,6 @@ export const AllMedicines = () => {
     }, []);
 
     return <div>
-        <NavBar></NavBar>
         <div>
              {medicines.map((med, index) => (
                 <BuyPlantCard 

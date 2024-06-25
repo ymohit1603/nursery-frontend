@@ -4,7 +4,7 @@ import footerbg1 from "../../assets/footer3.jpg";
 export const Footer = () => {
     return (
         <footer 
-            className="relative  py-12 bg-cover bg-no-repeat" 
+            className="relative  py-12  bg-cover bg-no-repeat" 
             style={{ backgroundImage: `url(${footerbg1})` }}
         >
             <div className="absolute inset-0 "></div>
