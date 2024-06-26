@@ -18,8 +18,8 @@ const ContactForm = () => {
 
     const handleClick = async () => {
         try {
-            const result = await axios.post(`${process.env.BACKEND_URL}/formData`, formData);
-            if (result.status === 200) {
+            const result = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact`, formData);
+            if (result) {
                 setSubmissionStatus('Query successfully submitted');
             }
         } catch (error) {
@@ -73,7 +73,7 @@ const ContactForm = () => {
                 <button
                     type="submit"
                     onClick={handleClick}
-                    className="flex items-center px-3 my-2 py-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    className="flex items-center px-3 my-2 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                     Submit
                 </button>

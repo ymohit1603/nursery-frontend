@@ -34,7 +34,7 @@ const ContactBody: React.FC<ContactTypes> = ({ title, description, bottomDescrip
     return (
        <div className=" mx-auto mt-5 p-6 rounded-lg shadow-md">
           <div className="flex justify-center">
-            <div className=" max-w-2xl items-center text-center mb-4">
+            <div className=" max-w-3xl items-center text-center mb-4">
                 <div className="text-5xl font-bold mb-5 ">{title}</div>
                 <div className="text-gray-600">{description}</div>
              </div>
@@ -55,7 +55,7 @@ const ContactBody: React.FC<ContactTypes> = ({ title, description, bottomDescrip
                <ContactForm />
              </div>
           </div>
-          <div className='flex justify-center mt-8'>
+          <div className='flex justify-center mt-7'>
             <div className="text-center px-5 py-2 border rounded-md border-gray-300 w-fit static  text-gray-500">{bottomDescription}</div>
           </div>
         </div>
