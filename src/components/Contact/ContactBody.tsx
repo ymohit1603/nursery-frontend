@@ -51,7 +51,7 @@ const ContactBody: React.FC<ContactTypes> = ({ title, description, bottomDescrip
                      />
                   ))}
              </div>
-             <div>
+             <div >
                <ContactForm />
              </div>
           </div>
