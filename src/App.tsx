@@ -5,6 +5,7 @@ import { HomePage } from "./pages/Home/HomePage";
 import { Plants } from "./pages/Plants";
 import { Medicines } from "./pages/Medicines";
 import { ContactUs } from "./pages/contact";
+import Blogs from "./pages/Blog";
 
 function App() {
 
@@ -17,7 +18,8 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/plants" element={<Plants />} />
           <Route path="/medicines" element={<Medicines />} />
-          <Route path="/contact" element={ <ContactUs/>} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/blog" element={ <Blogs/>} />
         </Routes>
       </BrowserRouter>
     </div>

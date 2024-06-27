@@ -18,7 +18,7 @@ export const NavBar = () => {
         <AddNavBar linkTo="/plants" val="Plants" />
         <AddNavBar linkTo="/medicines" val="Medicines" />
         <AddNavBar linkTo="/nursery" val="Nursery" />
-        <AddNavBar linkTo="/about" val="About" />
+        <AddNavBar linkTo="/blog" val="Blogs" />
         <AddNavBar linkTo="/contact" val="Contact" />
       </div>
     </motion.div>
