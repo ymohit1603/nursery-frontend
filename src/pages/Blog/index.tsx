@@ -1,10 +1,10 @@
-import { NavBar } from "../../components/NavBar/NavBar";
+import Blog from "../../components/Blog";
+import Layout from "../../components/Layout";
 
 const Blogs = () => {
-    return <div>
-        <NavBar />
-        
-    </div>
+    return <Layout>
+        <Blog/>
+    </Layout>
 }
 
 export default Blogs;
