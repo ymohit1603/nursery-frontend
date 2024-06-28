@@ -2,12 +2,12 @@
 import { Box, Typography, Divider, Card, CardMedia } from '@mui/material';
 import { CalendarToday, Person } from '@mui/icons-material';
 
-export default function Component() {
+export default function Component({ }) {
   return (
     <Card sx={{ display: 'flex', maxWidth: '600px', gap: 2, p: 2 }}>
       <CardMedia
         component="img"
-        src="/placeholder.svg"
+        src={imgUrl}
         alt="Blog Post Image"
         sx={{
           width: 300,
