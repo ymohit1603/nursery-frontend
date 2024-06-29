@@ -37,7 +37,7 @@ export default function Component({ imgUrl, Title, Description, link }: Componen
               </Typography>
             </Box>
             <Box sx={{ mt: 'auto' }}> 
-              <Button variant="contained" color="primary" component={Link} to={link}>
+              <Button variant="contained" color="primary" component={Link} to={fullPath}>
                 Read More
               </Button>
             </Box>
