@@ -30,7 +30,7 @@ const BlogBody = () => {
     return <div className="flex flex-row justify-around">
         <div>
             <Tags/>
-            <Recents/>
+            <Recents imgUrl={""} title={""} description={""}/>
         </div>
 
         <div>
