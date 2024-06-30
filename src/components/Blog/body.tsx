@@ -26,12 +26,11 @@ const bodyData = [{
 }]
 
 
-const BlogBody = async () => {
+const BlogBody = () => {
     return <div className="flex flex-row justify-evenly">
         <div>
             <Tags />
-            <BlogList/>
-           
+            <BlogList/>          
         </div>
 
         <div>

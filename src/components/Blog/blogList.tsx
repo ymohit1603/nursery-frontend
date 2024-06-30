@@ -1,11 +1,16 @@
+import { Alert } from "@mui/material";
 import useRecentBlogs from "../../hooks/useRecentBlogs";
 import Recents from "./recents"; 
 
 const BlogList = () => {
-    const { recentBlogs, loading } = useRecentBlogs();
+    const { recentBlogs, loading,error } = useRecentBlogs();
 
     if (loading) {
         return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <Alert severity="error">{error}.</Alert>;
     }
 
     return (

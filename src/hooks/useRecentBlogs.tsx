@@ -10,6 +10,7 @@ interface RecentType {
 const useRecentBlogs = () => {
     const [recentBlogs, setRecentBlogs] = useState<RecentType[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,7 +18,7 @@ const useRecentBlogs = () => {
                 const response = await axios.get(`${process.env.VITE_BACKEND_URL}/recent`);
                 setRecentBlogs(response.data);
             } catch (error) {
-                console.log("error fetching recent blogs");
+                setError("Error fetching recent blogs");
             } finally {
                 setLoading(false);
             }
@@ -25,7 +26,7 @@ const useRecentBlogs = () => {
         fetchData();
     }, []);
 
-    return { recentBlogs, loading };
+    return { recentBlogs, loading, error };
 }
 
 export default useRecentBlogs;
