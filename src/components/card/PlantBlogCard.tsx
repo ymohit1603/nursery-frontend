@@ -15,7 +15,7 @@ export default function Component({ imgUrl, Title, Description, link }: Componen
   return (
     <div className="">
       <Link to={fullPath} style={{ textDecoration: 'none' }}>
-        <Card sx={{ m: 4, display: 'flex', maxHeight: '300px', maxWidth: '800px', gap: 2, p: 2, cursor: 'pointer' }}>
+        <Card sx={{ m: 4, display: 'flex', maxHeight: '300px', maxWidth: '700px', gap: 2, p: 2, cursor: 'pointer' }}>
           <CardMedia
             component="img"
             src={imgUrl}

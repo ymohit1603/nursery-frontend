@@ -1,6 +1,6 @@
 import Tags  from "./tags";
 import PlantBlogCard from "../card/PlantBlogCard";
-import Recents from "./recents";
+import BlogList from "./blogList";
 
 
 const bodyData = [{
@@ -26,11 +26,12 @@ const bodyData = [{
 }]
 
 
-const BlogBody = () => {
-    return <div className="flex flex-row justify-around">
+const BlogBody = async () => {
+    return <div className="flex flex-row justify-evenly">
         <div>
-            <Tags/>
-            <Recents imgUrl={""} title={""} description={""}/>
+            <Tags />
+            <BlogList/>
+           
         </div>
 
         <div>
