@@ -14,10 +14,10 @@ const IndoorBody = () => {
         return <Alert className="w-3/12" severity="error">{error}</Alert>           
     }
 
-    return (
-        blogs.map((blog) => {
-            <BlogBodyCard imgUrl={blog.imgUrl} Name={blog.name} Description={blog.content}></BlogBodyCard>
-        })
+    return (            
+            blogs.map((blog) => {
+                return <BlogBodyCard imgUrl={blog.imgUrl} Name={blog.name} Description={blog.content}></BlogBodyCard>
+                })
     );  
 }
 

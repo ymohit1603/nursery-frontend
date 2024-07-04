@@ -18,7 +18,7 @@ const OutdoorBody = () => {
 
     return (
         blogs.map((blog) => {
-            <BlogBodyCard imgUrl={blog.imgUrl} Name={blog.name} Description={blog.content}></BlogBodyCard>
+           return <BlogBodyCard imgUrl={blog.imgUrl} Name={blog.name} Description={blog.content}></BlogBodyCard>
         })
     );
 }
