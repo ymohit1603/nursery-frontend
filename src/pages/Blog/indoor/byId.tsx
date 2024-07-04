@@ -1,9 +1,9 @@
 import Layout from "../../../components/Layout";
 import IndoorPlantById from "../../../components/Blog/specific/byId"
 
-const SpecificIndoorPlant = () => {
+const SpecificIndoorPlant = ({ id}:{id:number}) => {
     return <Layout>
-        <IndoorPlantById/>
+        <IndoorPlantById endpoints={`blog/indoor/:${id}`}/>
     </Layout >
 }
 

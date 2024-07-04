@@ -9,6 +9,7 @@ import Blogs from "./pages/Blog";
 import IndoorPlant from "./pages/Blog/indoor";
 import OutdoorPlant from "./pages/Blog/outdoor";
 import OtherPlant from "./pages/Blog/outdoor";
+import SpecificIndoorPlant from "./pages/Blog/indoor/byId"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/blog" element={<Blogs />} />
           <Route path="/blog/indoor" element={<IndoorPlant />} />
+          <Route path="/blog/indoor/:id" element={<SpecificIndoorPlant />} />
           <Route path="/blog/outdoor" element={<OutdoorPlant />} />
           <Route path="/blog/other" element={<OtherPlant />} />         
         </Routes>
