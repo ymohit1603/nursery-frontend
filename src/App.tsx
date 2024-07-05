@@ -10,6 +10,7 @@ import IndoorPlant from "./pages/Blog/indoor";
 import OutdoorPlant from "./pages/Blog/outdoor";
 import OtherPlant from "./pages/Blog/outdoor";
 import SpecificIndoorPlant from "./pages/Blog/indoor/byId"
+import PlantsById from "./pages/Plants/plantsById";
 
 function App() {
 
@@ -21,11 +22,12 @@ function App() {
           <Route path="/signup" element={<Signup />}/>
           <Route path="/signin" element={<Signin />} />
           <Route path="/plants" element={<Plants />} />
+          <Route path="/plant/:id" element={<PlantsById />} />
           <Route path="/medicines" element={<Medicines />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/blog" element={<Blogs />} />
           <Route path="/blog/indoor" element={<IndoorPlant />} />
-          <Route path="/blog/indoor/:id" element={<SpecificIndoorPlant />} />
+          <Route path="/blog/indoor/:id" element={<SpecificIndoorPlant  />} />
           <Route path="/blog/outdoor" element={<OutdoorPlant />} />
           <Route path="/blog/other" element={<OtherPlant />} />         
         </Routes>
