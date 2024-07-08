@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export const NavBar = () => {
     return (<motion.div
@@ -20,6 +21,7 @@ export const NavBar = () => {
         <AddNavBar linkTo="/nursery" val="Nursery" />
         <AddNavBar linkTo="/blog" val="Blogs" />
         <AddNavBar linkTo="/contact" val="Contact" />
+        <AddNavBar linkTo="/cart" val={<ShoppingCartIcon/>} />
       </div>
     </motion.div>
   );
@@ -27,7 +29,7 @@ export const NavBar = () => {
 
 interface AddNavBarProps {
   linkTo: string;
-  val: string;
+  val: string|React.ReactNode;
 }
 
 const AddNavBar: React.FC<AddNavBarProps> = ({ linkTo, val }) => {
