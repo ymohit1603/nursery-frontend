@@ -25,24 +25,24 @@ const Plants: React.FC<PlantTypes> = ({
   };
 
   return (
-    <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
-      <div className="grid gap-4 md:gap-10 h-80 w-80 items-start bg-gray-300">
+    <div className="grid md:grid-cols-2 items-center max-w-6xl px-4 mx-auto py-6">
+      <div className="grid h-80 w-80 items-start bg-gray-300">
         <img
           src={imgUrl}
           alt="Plant Image"
-          width={200}
-          height={200}
+          width={600}
+          height={600}
           className="aspect-square max-h-fit rounded-lg overflow-hidden"
         />
       </div>
-      <div className="grid gap-4 md:gap-10 items-start">
+      <div className="grid md:gap-8 items-start">
         <div className="grid gap-2">
           <h1 className="text-3xl font-bold">{title}</h1>
           <p className="text-muted-foreground">{description}</p>
         </div>
         <div className="flex items-center justify-between">
           <div className="text-xl font-bold">Rs {currPrice}</div>
-          <div className="grid gap-2">
+          <div className="grid gap-2 items-start">
             <label htmlFor="quantity" className="text-base text-black">
               Quantity
             </label>

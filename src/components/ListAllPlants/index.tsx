@@ -12,7 +12,7 @@ interface Plant {
 }
 export const AllPlants = () => {
     const [plants, setPlants] = useState<Plant[]>([]);
-
+    plants;
     useEffect(() => {
         const fetchPlantsData = async () => {
             try {
@@ -28,17 +28,26 @@ export const AllPlants = () => {
 
     return (
         <div>
-            {plants.map((plant, index) => (
-                <BuyPlantCard 
-                    key={index}
-                    imgUrl={plant.imgUrl}
-                    name={plant.name}
-                    price={plant.price}
-                    discountedPrice={plant.discountedPrice}
-                    cartButton={plant.cartButton}
-                    discount={plant.discount}
+            {/* {plants.map((plant, index) => ( */}
+                <BuyPlantCard
+                // key={index}
+                    plantId={1}
+                    imgUrl=""
+                    name="name"
+                    price={ 20}
+                    discountedPrice={12}
+                    cartButton="button"
+                    discount={3}
                 />
-            ))}
+            {/* ))} */}
         </div>
     );
 };
+
+// key={index}
+// imgUrl={plant.imgUrl||""}
+// name={plant.name||"name"}
+// price={plant.price||20}
+// discountedPrice={plant.discountedPrice||12}
+// cartButton={plant.cartButton||"button"}
+// discount={plant.discount||3}

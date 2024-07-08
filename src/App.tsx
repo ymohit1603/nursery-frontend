@@ -11,6 +11,7 @@ import OutdoorPlant from "./pages/Blog/outdoor";
 import OtherPlant from "./pages/Blog/outdoor";
 import SpecificIndoorPlant from "./pages/Blog/indoor/byId"
 import PlantsById from "./pages/Plants/plantsById";
+import Cart from "./pages/cart";
 
 function App() {
 
@@ -29,7 +30,8 @@ function App() {
           <Route path="/blog/indoor" element={<IndoorPlant />} />
           <Route path="/blog/indoor/:id" element={<SpecificIndoorPlant  />} />
           <Route path="/blog/outdoor" element={<OutdoorPlant />} />
-          <Route path="/blog/other" element={<OtherPlant />} />         
+          <Route path="/blog/other" element={<OtherPlant />} /> 
+          <Route path="/cart" element={<Cart />} /> 
         </Routes>
       </BrowserRouter>
     </div>
