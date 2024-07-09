@@ -9,9 +9,9 @@ interface cardTypes {
 
 const ItemCard: React.FC<cardTypes> = ({ imgUrl, quantity, title, price }) => {
   return (
-    <div className="flex flex-row justify-evenly bg-white shadow-lg rounded-lg p-6 m-4 w-full">
+    <div className="flex flex-row justify-evenly bg-white shadow-lg rounded-lg p-10 mb-3  max-w-xl">
       <div className="min-w-44 rounded-3xl ">
-        <img className="h-36 w-full m-2 object-cover rounded-t-lg" src={imgUrl} alt="image" />
+        <img className="h-36  m-2 object-cover rounded-t-lg" src={imgUrl} alt="image" />
       </div>
       <div className="min-w-80 ml-3 flex flex-col justify-between">
               <div >
