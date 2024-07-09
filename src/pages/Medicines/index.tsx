@@ -3,8 +3,10 @@ import Layout from "../../components/Layout"
 
 
 
-export const Medicines = () => {
+const Medicines = () => {
     return <Layout>
         <AllMedicines />
         </Layout>
 }
+
+export default Medicines;

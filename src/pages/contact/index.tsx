@@ -11,11 +11,13 @@ const contactVal =
     }
 
 
-export const ContactUs = () => {
+ const ContactUs = () => {
     return <div>
         <NavBar/>
         <ContactBody title={contactVal.title} description={contactVal.description} bottomDescription={contactVal.bottomDescription}/>
     </div>
     
         
-}
+ }
+
+export default ContactUs;
