@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { FormControl, MenuItem, Select, SelectChangeEvent, Button } from '@mui/material';
+import { FormControl, MenuItem, Select, SelectChangeEvent, Button,Snackbar, Alert } from '@mui/material';
 import { addItemToCart } from '../../redux/slices/slice';
 import { useAppDispatch } from '../../redux/hook';
 
@@ -23,7 +23,16 @@ const Plants: React.FC<PlantTypes> = ({
   // discount
 
 }) => {
-    const [selectedQuantity, setSelectedQuantity] = React.useState<number>(1);
+    const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
+    const [open, setOpen] = React.useState(false);
+  
+    const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpen(false);
+    };
+  
     const dispatch = useAppDispatch();
   
     const handleQuantityChange = (event: SelectChangeEvent<number>) => {
@@ -39,9 +48,8 @@ const Plants: React.FC<PlantTypes> = ({
         selectedQuantity
       }
       dispatch(addItemToCart(product));  
-     
-      console.log("product added");
-      }
+      setOpen(true);
+    }
       
 
     return (
@@ -87,6 +95,16 @@ const Plants: React.FC<PlantTypes> = ({
             <Button onClick={addToCartHandler} variant="contained" size="small" className="flex items-center">
               <ShoppingCartIcon className="mr-2" /> Add to Cart
             </Button>
+            <Snackbar anchorOrigin={{ vertical:'bottom', horizontal:'center' }} open={open} autoHideDuration={6000} onClose={handleClose}>
+              <Alert
+                onClose={handleClose}
+                severity="success"
+                variant="outlined"
+                sx={{ width: '100%' , bgcolor: '#BAF5C2' }}
+              >
+                Item added to cart.
+              </Alert>
+          </Snackbar>
             <Button variant="contained" size="small" >Buy now</Button>
           </div>
         </div>
