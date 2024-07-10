@@ -1,13 +1,24 @@
 import React from 'react';
+import { useAppDispatch } from '../../redux/hook';
+import { removeItemFromCart } from '../../redux/slices/slice';
 
 interface cardTypes {
+  id:number,
   imgUrl: string,
   quantity: number,
   title: string,
   price: number
 }
 
-const ItemCard: React.FC<cardTypes> = ({ imgUrl, quantity, title, price }) => {
+const ItemCard: React.FC<cardTypes> = ({id, imgUrl, quantity, title, price }) => {
+
+  const dispatch = useAppDispatch();
+
+  const handleClick = ()=> {
+    dispatch(removeItemFromCart(id));
+    console.log(id);
+  }
+
   return (
     <div className="flex flex-row justify-evenly bg-white shadow-lg rounded-lg p-10 mb-3  max-w-xl">
       <div className="min-w-44 rounded-3xl ">
@@ -22,10 +33,9 @@ const ItemCard: React.FC<cardTypes> = ({ imgUrl, quantity, title, price }) => {
                 <p className="text-sm text-gray-500">Quantity: {quantity}</p>
               </div>
               <div className='w-full flex justify-end'>
-                <button className='text-blue-600 font-medium hover:text-sky-800'>Remove</button>
+          <button onClick={handleClick } className='text-blue-600 font-medium hover:text-sky-800'>Remove</button>
              </div>
-    </div>
-          
+    </div>          
     </div>
   );
 }

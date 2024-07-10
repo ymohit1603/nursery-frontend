@@ -43,7 +43,7 @@ export const addItemToCart = createAsyncThunk('cart/addItemToCart', async (item:
   return response.data;
 });
 
-export const removeItemFromCart = createAsyncThunk('cart/removeItemFromCart', async (id) => {
+export const removeItemFromCart = createAsyncThunk('cart/removeItemFromCart', async (id:number) => {
   const response = await axios.delete(`${process.env.VITE_BACKEND_URL}/${id}`);
   return response.data;
 });
