@@ -8,6 +8,15 @@ interface CartItem {
   totalPrice: number;
 }
 
+interface product{
+  imgUrl:string,
+  title:string,
+  description:string,
+  currPrice:number,
+  selectedQuantity:number
+}
+
+
 interface CartState {
   items: CartItem[];
   totalQuantity: number;
@@ -29,7 +38,7 @@ export const fetchCart = createAsyncThunk("user/fetchCart",async () => {
   return response.data;
 })
 
-export const addItemToCart = createAsyncThunk('cart/addItemToCart', async (item) => {
+export const addItemToCart = createAsyncThunk('cart/addItemToCart', async (item:product) => {
   const response = await axios.post(`${process.env.VITE_BACKEND_URL}/user/cart`, item);
   return response.data;
 });
