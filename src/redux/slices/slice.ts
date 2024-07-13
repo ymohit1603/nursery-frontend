@@ -16,9 +16,9 @@ interface product{
   title:string,
   description:string,
   currPrice:number,
-  selectedQuantity:number
+  selectedQuantity: number,
+  plantId:number
 }
-
 
 interface CartState {
   items: CartItem[];

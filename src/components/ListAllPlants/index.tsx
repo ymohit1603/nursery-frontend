@@ -45,6 +45,7 @@ export const AllPlants = () => {
 };
 
 // key={index}
+// plantId={plants.id}
 // imgUrl={plant.imgUrl||""}
 // name={plant.name||"name"}
 // price={plant.price||20}

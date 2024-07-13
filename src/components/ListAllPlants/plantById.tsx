@@ -5,13 +5,14 @@ import { addItemToCart } from '../../redux/slices/slice';
 import { useAppDispatch } from '../../redux/hook';
 
 interface PlantTypes {
-  imgUrl: string;
-  title: string;
-  description: string;
-  currPrice: number;
-  originalPrice: number;
-  discount: number;
-  quantity: number;
+  imgUrl: string,
+  title: string,
+  description: string,
+  currPrice: number,
+  originalPrice: number,
+  discount: number,
+  quantity: number,
+  plantId:number,
 }
 
 const Plants: React.FC<PlantTypes> = ({
@@ -19,6 +20,7 @@ const Plants: React.FC<PlantTypes> = ({
   title,
   description,
   currPrice,
+  plantId,
   // originalPrice,
   // discount
 
@@ -45,7 +47,8 @@ const Plants: React.FC<PlantTypes> = ({
         title,
         description,
         currPrice,
-        selectedQuantity
+        selectedQuantity,
+        plantId
       }
       dispatch(addItemToCart(product));  
       setOpen(true);
