@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAppSelector } from '../../../redux/hook';
+import axios from 'axios';
 
 interface checkoutTypes {
   price: number;
@@ -19,6 +21,18 @@ const Checkout: React.FC<checkoutTypes> = ({
   buttonText = 'Checkout',
   additionalInfo
 }) => {
+
+  const cart = useAppSelector((state) => state.cart.items); 
+  const handleClick = () => {
+    try {
+      const result = async () => { await axios.post(`${process.env.VITE_BACKEND_URL}/create-checkout-session`, cart); }
+      console.log(result);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
       <h2 className="text-2xl font-bold text-center mb-6">Order Summary</h2>
@@ -46,7 +60,7 @@ const Checkout: React.FC<checkoutTypes> = ({
             {additionalInfo}
           </div>
         )}
-        <button className="w-full py-3 mt-6 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+        <button onClick={handleClick} className="w-full py-3 mt-6 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
           {buttonText}
         </button>
       </div>
