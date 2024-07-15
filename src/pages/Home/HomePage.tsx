@@ -15,7 +15,7 @@ const MedicineValues =
 const NurseryValues = {
     title:"Find Your Local Nursery",
     Description: "Enter your location to discover the nearest nursery partners and get the plants you love delivered to your door.",
-    placeholder:"Enter Your Zip Code",
+    placeholder:"Enter your city name",
     buttonText:"Find Nursery",
 }
 

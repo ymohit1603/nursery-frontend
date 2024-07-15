@@ -15,9 +15,11 @@ const SpecificIndoorPlant = lazy(() => import('./pages/Blog/indoor/byId'));
 const PlantsById = lazy(() => import('./pages/Plants/plantsById'));
 const Cart = lazy(() => import('./pages/cart'));
 
+
 import { HomePage } from './pages/Home/HomePage';
 import Signup from './pages/Auth/Signup';
 import Signin from './pages/Auth/Signin';
+import Nursery from "./pages/findNursery";
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
               <Route path="/blog/outdoor" element={<OutdoorPlant />} />
               <Route path="/blog/other" element={<OtherPlant />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/findNursery" element={<Nursery />} />
             </Routes>
           </Suspense>
         </BrowserRouter>
