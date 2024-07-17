@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import { fetchNursery } from "../../redux/slices/nurserySlice";
+import { useAppDispatch } from "../../redux/hook";
 
 interface nurseryTypes{
     title: string,
@@ -8,14 +10,14 @@ interface nurseryTypes{
     buttonText:string,
 }
 
-
 export const NearestNursery: React.FC<nurseryTypes> = ({ title, Description, placeholder, buttonText }) => {
 
-    const [ input, setInput ] = useState("");
+    const [input, setInput] = useState("");
     
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const handleClick = () => {
-        console.log(input);
+        dispatch(fetchNursery(input));
         navigate('/findNursery');
     }
 
