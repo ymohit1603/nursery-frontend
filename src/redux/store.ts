@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from "./slices/slice";
 import nurseryReducer from "./slices/nurserySlice";
+import scrollToContent from "./slices/scrollSlice";
 
 export const store = configureStore({
     reducer: {
         cart: cartReducer,
-        nursery:nurseryReducer,
+        nursery: nurseryReducer,
+        scroll:scrollToContent,
     },
 })
 
