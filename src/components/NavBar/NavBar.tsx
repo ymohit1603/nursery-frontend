@@ -2,9 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useAppSelector } from '../../redux/hook';
 
 export const NavBar = () => {
-    return (<motion.div
+  const nurseryRef = useAppSelector((state) => state.scroll.nurseryRef);
+
+  const scrollToNursery = () => {
+    if (nurseryRef) {
+      nurseryRef.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  return (
+    <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -18,10 +28,10 @@ export const NavBar = () => {
       <div className="flex-1 flex justify-end space-x-4">
         <AddNavBar linkTo="/plants" val="Plants" />
         <AddNavBar linkTo="/medicines" val="Medicines" />
-        <AddNavBar linkTo="/nursery" val="Nursery" />
+        <AddNavBar onClick={scrollToNursery} linkTo="#" val="Nursery" />
         <AddNavBar linkTo="/blog" val="Blogs" />
         <AddNavBar linkTo="/contact" val="Contact" />
-        <AddNavBar linkTo="/cart" val={<ShoppingCartIcon/>} />
+        <AddNavBar linkTo="/cart" val={<ShoppingCartIcon />} />
       </div>
     </motion.div>
   );
@@ -29,15 +39,17 @@ export const NavBar = () => {
 
 interface AddNavBarProps {
   linkTo: string;
-  val: string|React.ReactNode;
+  val: string | React.ReactNode;
+  onClick?: () => void;
 }
 
-const AddNavBar: React.FC<AddNavBarProps> = ({ linkTo, val }) => {
+const AddNavBar: React.FC<AddNavBarProps> = ({ linkTo, val, onClick }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       className="relative"
+      onClick={onClick}
     >
       <Link to={linkTo} className="text-gray-800 hover:text-gray-600 transition-colors duration-300">
         {val}
@@ -45,4 +57,6 @@ const AddNavBar: React.FC<AddNavBarProps> = ({ linkTo, val }) => {
     </motion.div>
   );
 };
+
+export default NavBar;
 

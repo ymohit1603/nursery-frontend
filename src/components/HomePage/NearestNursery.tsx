@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { fetchNursery } from "../../redux/slices/nurserySlice";
 import { useAppDispatch } from "../../redux/hook";
+import {setNurseryRef} from "../../redux/slices/scrollSlice";
 
 interface nurseryTypes{
     title: string,
@@ -12,17 +13,22 @@ interface nurseryTypes{
 
 export const NearestNursery: React.FC<nurseryTypes> = ({ title, Description, placeholder, buttonText }) => {
 
-    const [input, setInput] = useState("");
-    
-    const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const nurseryRef = useRef<HTMLDivElement>(null);
+    const [input, setInput] = useState("");
+    useEffect(() => {
+        if (nurseryRef.current) {
+          dispatch(setNurseryRef(nurseryRef.current));
+        }
+      }, [dispatch]);
+    const navigate = useNavigate();
     const handleClick = () => {
         dispatch(fetchNursery(input));
         navigate('/findNursery');
     }
 
 
-    return <div className="min-h-screen flex flex-col justify-center items-center bg-slate-50">
+    return <div ref={nurseryRef} className="min-h-screen flex flex-col justify-center items-center bg-slate-50">
         <div className="font-extrabold text-5xl mb-4 ">{title}</div>
         <div className="text-lg text-slate-700 mb-2">{Description}</div>
         <input type="search" id="default-search" className="block mb-2 w-72 p-3 ps-10 text-sm text-gray-900 border border-gray-400 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " onChange={(e) => { setInput(e.target.value);}} placeholder={placeholder} required />
