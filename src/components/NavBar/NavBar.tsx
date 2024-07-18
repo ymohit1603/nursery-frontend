@@ -27,7 +27,7 @@ export const NavBar = () => {
       </div>
       <div className="flex-1 flex justify-end space-x-4">
         <AddNavBar linkTo="/plants" val="Plants" />
-        <AddNavBar linkTo="/medicines" val="Medicines" />
+        <AddNavBar linkTo="/medicines" val="Fertilizers" />
         <AddNavBar onClick={scrollToNursery} linkTo="#" val="Nursery" />
         <AddNavBar linkTo="/blog" val="Blogs" />
         <AddNavBar linkTo="/contact" val="Contact" />
