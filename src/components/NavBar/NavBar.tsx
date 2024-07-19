@@ -25,13 +25,18 @@ export const NavBar = () => {
           Logo
         </Link>
       </div>
-      <div className="flex-1 flex justify-end space-x-4">
-        <AddNavBar linkTo="/plants" val="Plants" />
-        <AddNavBar linkTo="/medicines" val="Fertilizers" />
-        <AddNavBar onClick={scrollToNursery} linkTo="#" val="Nursery" />
-        <AddNavBar linkTo="/blog" val="Blogs" />
-        <AddNavBar linkTo="/contact" val="Contact" />
-        <AddNavBar linkTo="/cart" val={<ShoppingCartIcon />} />
+      <div className="flex w-2/3 justify-between ">
+        <div className='flex justify-start space-x-6'>
+          <AddNavBar linkTo="/plants" val="Plants" />
+          <AddNavBar linkTo="/medicines" val="Fertilizers" />
+          <AddNavBar onClick={scrollToNursery} linkTo="#" val="Nursery" />
+          <AddNavBar linkTo="/blog" val="Blogs" />
+          <AddNavBar linkTo="/contact" val="Contact" />
+        </div>
+        <div className='flex space-x-6 justify-end'>
+          <AddNavBar linkTo="/signin"  val={"Signin"} />
+          <AddNavBar linkTo="/cart" val={<ShoppingCartIcon />} />
+        </div>
       </div>
     </motion.div>
   );
