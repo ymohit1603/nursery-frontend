@@ -1,19 +1,23 @@
 import axios from "axios";
 import { ChangeEvent, useState } from "react";
-import { BACKEND_URL } from "../../config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Auth = ({ type }: { type: "Signup" | "Signin" }) => {
     const [Inputs, setInputs] = useState({
         email: "",
         password: "",
     });
+    // const [error, setError] = useState(null);
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    const navigate = useNavigate();
 
     async function sendRequest() {
+        console.log(`/user/${type.toLowerCase()} ${backendUrl}`);
         try {
-            const response = await axios.post(`${BACKEND_URL}/user/${type.toLowerCase()}`, Inputs);
+            const response = await axios.post(`${backendUrl}/user/${type.toLowerCase()}`, Inputs);
             const jwt = response.data.jwt;
             localStorage.setItem("token", jwt);
+            navigate('/');
         } catch (error) {
             alert("Error while signing in");
         }
