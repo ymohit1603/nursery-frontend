@@ -26,7 +26,7 @@ export const NavBar = () => {
         </Link>
       </div>
       <div className="flex w-2/3 justify-between ">
-        <div className='flex justify-start space-x-6'>
+        <div className='flex justify-start space-x-6 mt-1'>
           <AddNavBar linkTo="/plants" val="Plants" />
           <AddNavBar linkTo="/medicines" val="Fertilizers" />
           <AddNavBar onClick={scrollToNursery} linkTo="#" val="Nursery" />
@@ -34,7 +34,9 @@ export const NavBar = () => {
           <AddNavBar linkTo="/contact" val="Contact" />
         </div>
         <div className='flex space-x-6 justify-end'>
-          <AddNavBar linkTo="/signin"  val={"Signin"} />
+          <div className='border border-black rounded-lg px-3 py-1 hover:bg-gray-200'>
+            <AddNavBar linkTo="/signin"  val={"Signin"} />
+          </div>
           <AddNavBar linkTo="/cart" val={<ShoppingCartIcon />} />
         </div>
       </div>
@@ -51,7 +53,7 @@ interface AddNavBarProps {
 const AddNavBar: React.FC<AddNavBarProps> = ({ linkTo, val, onClick }) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.07 }}
       whileTap={{ scale: 0.9 }}
       className="relative"
       onClick={onClick}
