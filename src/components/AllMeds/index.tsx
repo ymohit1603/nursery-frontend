@@ -1,48 +1,65 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BuyPlantCard } from "../card/BuyPlantCard";
-// import axios from "axios";
-
-// interface medicineTypes{
-//     imgUrl: string,
-//     name: string,
-//     price: number,
-//     discountedPrice: number,
-//     cartButton: string,
-//     discount:number
-// }
+import axios from "axios";
+import { Alert, CircularProgress } from "@mui/material";
 
 
+interface medicineTypes{
+    id:number,
+    imgUrl: string,
+    name: string,
+    price: number,
+    discountedPrice: number,
+    cartButton: string,
+    discount:number
+}
 
 export const AllMedicines = () => {
 
-    // const [medicines, setMedicines] = useState<medicineTypes[]>([]);
+    const [medicines, setMedicines] = useState<medicineTypes[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-    // useEffect(() => {
-    //     const fetchMedicines = async () => {
-    //         try {
-    //             const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/medicines`);
-    //             setMedicines(response.data);
-    //         } catch (error) {
-    //             console.error("Error fetching medicines:", error);
-    //         }
-    //     };
+    useEffect(() => {
+        const fetchMedicines = async () => {
+            try {
+                const response = await axios.get(`${backendUrl}/medicines`);
+                setMedicines(response.data.data);
+                console.log(response.data.data);
+            } catch (error) {
+                setError("Error fetching mrdicine data");
+                console.error("Error fetching medicine data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    //     fetchMedicines();
-    // }, []);
+        fetchMedicines();
+    }, []);
+
+    if (loading) {
+        return <CircularProgress />;
+    }
+
+    if (error) {
+        return <Alert className="w-1/4" severity="error">{error}</Alert>;
+    }
+
 
     return <div>
-        <div>
-             {/* {medicines.map((med, index) => (
+        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+             {medicines.length > 0 &&medicines.map((med, index) => (
                 <BuyPlantCard 
                      key={index}
-                     imgUrl={med.imgUrl}
+                     plantId={med.id}
+                     imgUrl={med.imgUrl||""}
                      name={med.name}
                      price={med.price}
-                     discountedPrice={med.discountedPrice}
-                     cartButton={med.cartButton}
-                     discount={med.discount} plantId={0}                />
-            ))} */}
-            <BuyPlantCard plantId={0} imgUrl={""} name={""} price={0} discountedPrice={0} cartButton={""} discount={0} />
+                     discountedPrice={med.discountedPrice||100}
+                     cartButton="Add to cart."
+                     discount={med.discount||3}             />
+            ))}
         </div>
     </div>
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 interface BuyPlantCardTypes {
     plantId:number,
@@ -46,9 +47,9 @@ export const BuyPlantCard: React.FC<BuyPlantCardTypes> = ({ plantId,imgUrl, name
                         <span className="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">5.0</span>
                     </div>
                 </div>
-                <Link to={`/plant/:${plantId}`} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                <Link to={`/plant/:${plantId}`} className="flex items-center justify-center rounded-md bg-slate-900 pr-10 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none"> </svg>
-                {cartButton }</Link >
+                <ShoppingCartIcon className='mr-2'/> { cartButton }</Link >
     </div>
   </div>
   
