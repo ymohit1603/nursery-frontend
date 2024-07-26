@@ -57,7 +57,7 @@ const Plants: React.FC<PlantTypes> = ({
 
     return (
       <div className="grid md:grid-cols-2 items-center max-w-6xl px-4 mx-auto py-6">
-        <div className="grid h-80 w-80 items-start bg-gray-300">
+        <div className="grid h-80 w-80 items-start ml-32 bg-gray-300">
           <img
             src={imgUrl}
             alt="Plant Image"
@@ -66,7 +66,7 @@ const Plants: React.FC<PlantTypes> = ({
             className="aspect-square max-h-fit rounded-lg overflow-hidden"
           />
         </div>
-        <div className="grid md:gap-8 items-start">
+        <div className="grid md:gap-8 mr-32 items-start">
           <div className="grid gap-2">
             <h1 className="text-3xl font-bold">{title}</h1>
             <p className="text-muted-foreground">{description}</p>

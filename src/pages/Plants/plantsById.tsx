@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import Plants from "../../components/ListAllPlants/plantById";
 import useSpecificPlant from "../../hooks/useSpecificPlant";
 import { Alert, CircularProgress } from "@mui/material";
+import Review from "../../components/card/Review";
 
 
 type RouteParams = {
@@ -28,6 +29,7 @@ const PlantById = () => {
 
     return <Layout>
         {plant && <Plants imgUrl={plant.imgUrl} title={plant.name} discount={plant.discount} quantity={0} plantId={plant.id} description={"This is a plant"} currPrice={plant.price} originalPrice={0} />}
+        <Review/>
     </Layout>;
 }
 
