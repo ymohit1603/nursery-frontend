@@ -14,13 +14,14 @@ import { decrement, increase } from '../../redux/slices/blogSlice';
 
 
 interface cardTypes{
+  id:number,
   imgUrl: string,
   Name: string,
   title:string,
   Description:string
 }
 
-export default function BlogCard({ imgUrl, title, Description }: cardTypes) {
+export default function BlogCard({id, imgUrl, title, Description }: cardTypes) {
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export default function BlogCard({ imgUrl, title, Description }: cardTypes) {
   };
 
   const handleCardClick = () => {
-    navigate(':id')
+    navigate(`${id}`);
   }
 
   return (

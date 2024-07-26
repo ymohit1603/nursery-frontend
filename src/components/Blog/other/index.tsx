@@ -19,7 +19,7 @@ const OtherBody = () => {
             {
                   blogs.length>0?
                   blogs.map((blog,index) => {
-                      return <BlogBodyCard key={index} imgUrl={blog.imgUrl} title={blog.title} Description={blog.content} Name={""}></BlogBodyCard>
+                      return <BlogBodyCard key={index} imgUrl={blog.imgUrl} title={blog.title} Description={blog.content} Name={""} id={blog.id}></BlogBodyCard>
                   }) :
                   <Alert className="w-3/12" severity="info">No blogs found</Alert>
             }

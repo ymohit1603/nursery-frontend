@@ -3,9 +3,9 @@ import IndoorPlantById from "../../../components/Blog/specific/byId"
 import { useParams } from "react-router-dom";
 
 const SpecificIndoorPlant = () => {
-    const id = useParams;
+    const {id} = useParams();
     return <Layout>
-        <IndoorPlantById endpoints={`blog/indoor/:${id}`}/>
+        <IndoorPlantById endpoints={`blog/${id}`} />
     </Layout >
 }
 

@@ -4,6 +4,7 @@ import { useAppDispatch } from "../redux/hook";
 import { setInitialState } from "../redux/slices/blogSlice";
 
 interface blogTypes{
+    id: number;
     title: string;
     imgUrl: string,
     name: string,

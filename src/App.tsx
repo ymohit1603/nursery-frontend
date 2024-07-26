@@ -37,6 +37,8 @@ function App() {
               <Route path="/blog" element={<Blogs />} />
               <Route path="/blog/indoor" element={<IndoorPlant />} />
               <Route path="/blog/indoor/:id" element={<SpecificIndoorPlant />} />
+              <Route path="/blog/outdoor/:id" element={<SpecificIndoorPlant />} />
+              <Route path="/blog/other/:id" element={<SpecificIndoorPlant />} />
               <Route path="/blog/outdoor" element={<OutdoorPlant />} />
               <Route path="/blog/other" element={<OtherPlant />} />
               <Route path="/cart" element={<Cart />} />
