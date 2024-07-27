@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { FormControl, MenuItem, Select, SelectChangeEvent, Button,Snackbar, Alert } from '@mui/material';
+import { FormControl, MenuItem, Select, SelectChangeEvent, Button, Snackbar, Alert } from '@mui/material';
 import { addItemToCart } from '../../redux/slices/slice';
 import { useAppDispatch } from '../../redux/hook';
 
@@ -12,7 +12,7 @@ interface PlantTypes {
   originalPrice: number,
   discount: number,
   quantity: number,
-  plantId:number,
+  plantId: number,
 }
 
 const Plants: React.FC<PlantTypes> = ({
@@ -23,67 +23,64 @@ const Plants: React.FC<PlantTypes> = ({
   plantId,
   // originalPrice,
   // discount
-
 }) => {
-    const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
-    const [open, setOpen] = React.useState(false);
-  
-    const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setOpen(false);
-    };
-  
-    const dispatch = useAppDispatch();
-  
-    const handleQuantityChange = (event: SelectChangeEvent<number>) => {
-      setSelectedQuantity(event.target.value as number);
-    };
-  
-    const addToCartHandler = () => {
-      const product = {
-        imgUrl,
-        title,
-        description,
-        currPrice,
-        selectedQuantity,
-        plantId
-      }
-      dispatch(addItemToCart(product));  
-      setOpen(true);
-    }
-      
+  const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
+  const [open, setOpen] = useState(false);
 
-    return (
-      <div className="grid md:grid-cols-2 items-center max-w-6xl px-4 mx-auto py-6">
-        <div className="grid h-80 w-80 items-start ml-32 bg-gray-300">
+  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const dispatch = useAppDispatch();
+
+  const handleQuantityChange = (event: SelectChangeEvent<number>) => {
+    setSelectedQuantity(event.target.value as number);
+  };
+
+  const addToCartHandler = () => {
+    const product = {
+      imgUrl,
+      title,
+      description,
+      currPrice,
+      selectedQuantity,
+      plantId
+    };
+    dispatch(addItemToCart(product));
+    setOpen(true);
+  };
+
+  return (
+    <div className="container mx-auto h-1/4 my-5 py-9">
+      <div className="grid md:grid-cols-2 h-full items-center gap-6">
+        <div className="flex justify-center bg-gray-300 h-full rounded-lg overflow-hidden">
           <img
             src={imgUrl}
-            alt="Plant Image"
-            width={600}
-            height={600}
-            className="aspect-square max-h-fit rounded-lg overflow-hidden"
+            alt="Plant"
+            className="object-cover w-full h-full"
           />
         </div>
-        <div className="grid md:gap-8 mr-32 items-start">
-          <div className="grid gap-2">
+        <div className="flex flex-col space-y-6">
+          <div className="space-y-2">
             <h1 className="text-3xl font-bold">{title}</h1>
-            <p className="text-muted-foreground">{description}</p>
+            <p className="text-gray-600">{description}</p>
           </div>
           <div className="flex items-center justify-between">
             <div className="text-xl font-bold">Rs {currPrice}</div>
-            <div className="grid gap-2 items-start">
-              <label htmlFor="quantity" className="text-base text-black">
+            <div className="flex items-center space-x-2">
+              <label htmlFor="quantity" className="text-base text-gray-700">
                 Quantity
               </label>
-              <FormControl className="w-24">
+              <FormControl>
                 <Select
                   labelId="quantity-select-label"
                   id="quantity-select"
                   value={selectedQuantity}
-                                onChange={handleQuantityChange}
-                                size="small" className='w-16'
+                  onChange={handleQuantityChange}
+                  size="small"
                 >
                   <MenuItem value={1}>1</MenuItem>
                   <MenuItem value={2}>2</MenuItem>
@@ -94,25 +91,31 @@ const Plants: React.FC<PlantTypes> = ({
               </FormControl>
             </div>
           </div>
-          <div className="flex space-x-4 ">
+          <div className="flex space-x-4">
             <Button onClick={addToCartHandler} variant="contained" size="small" className="flex items-center">
               <ShoppingCartIcon className="mr-2" /> Add to Cart
             </Button>
-            <Snackbar anchorOrigin={{ vertical:'bottom', horizontal:'center' }} open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Snackbar
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              open={open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
               <Alert
                 onClose={handleClose}
                 severity="success"
                 variant="outlined"
-                sx={{ width: '100%' , bgcolor: '#BAF5C2' }}
+                sx={{ width: '100%', bgcolor: '#BAF5C2' }}
               >
                 Item added to cart.
               </Alert>
-          </Snackbar>
-            <Button variant="contained" size="small" >Buy now</Button>
+            </Snackbar>
+            <Button variant="contained" size="small">Buy now</Button>
           </div>
         </div>
       </div>
-    )
+    </div>
+  );
 };
 
 export default Plants;

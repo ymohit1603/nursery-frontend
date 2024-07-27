@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import Layout from "../../components/Layout";
 import Plants from "../../components/ListAllPlants/plantById";
 import useSpecificPlant from "../../hooks/useSpecificPlant";
-import { Alert, CircularProgress } from "@mui/material";
+import { Alert, CircularProgress, Divider } from "@mui/material";
 import Review from "../../components/card/Review";
+import CustomerReviews from "../../components/card/userReviews";
 
 
 type RouteParams = {
@@ -28,8 +29,15 @@ const PlantById = () => {
 
 
     return <Layout>
+        <div className='w-full flex justify-center'>    
+            <div>
         {plant && <Plants imgUrl={plant.imgUrl} title={plant.name} discount={plant.discount} quantity={0} plantId={plant.id} description={"This is a plant"} currPrice={plant.price} originalPrice={0} />}
-        <Review/>
+                <Review/>
+                <Divider sx={{ my: 2 }} />
+                <CustomerReviews />
+            
+            </div>
+      </div>
     </Layout>;
 }
 
