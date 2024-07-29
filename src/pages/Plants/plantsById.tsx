@@ -24,8 +24,8 @@ const PlantById = () => {
     const reviewError = useAppSelector((state) => state.review.error);
   
     useEffect(() => {
-      if (reviewStatus === 'idle') {
-        dispatch(fetchReviews(numericId));
+        if (reviewStatus === 'idle') {
+            dispatch(fetchReviews(numericId));
       }
     }, [dispatch, numericId, reviewStatus]);
    
@@ -52,7 +52,7 @@ const PlantById = () => {
                     <Divider sx={{ my: 2 }} />
                     <div className="min-w-3xl mb-4 ">
                         {reviewStatus === 'loading' && <div className="w-screen h-screen flex justify-center items-center"><CircularProgress />;</div>}
-                        {reviewStatus === 'failed' &&  <Alert className="w-1/4" severity="error">{reviewError}</Alert>}
+                        {reviewStatus === 'failed' &&  <Alert className="w-1/3" severity="error">{reviewError}</Alert>}
                         {reviewStatus === 'succeeded' && (        
                         <div className="bg-black  h-fit "> <CustomerReviews reviews={reviews}/></div>
                         )}  

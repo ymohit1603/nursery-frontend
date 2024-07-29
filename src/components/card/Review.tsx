@@ -116,7 +116,7 @@ export default function Component({productId}:{productId:number} ) {
           </FormControl>
           <TextField
             label="Review"
-            name="review"
+            name="reviewText"
             multiline
             rows={3}
             value={formState.reviewText}
