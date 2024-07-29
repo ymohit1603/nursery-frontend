@@ -32,7 +32,7 @@ const PlantById = () => {
         <div className='w-full flex justify-center'>    
             <div>
         {plant && <Plants imgUrl={plant.imgUrl} title={plant.name} discount={plant.discount} quantity={0} plantId={plant.id} description={"This is a plant"} currPrice={plant.price} originalPrice={0} />}
-                <Review/>
+                <Review productId={numericId} />
                 <Divider sx={{ my: 2 }} />
                 <CustomerReviews />
             
