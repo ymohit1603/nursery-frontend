@@ -1,8 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 export interface Review {
+    productId: number;
     name: string;
     email: string;
     rating: number;
@@ -10,10 +10,6 @@ export interface Review {
 }
 
 interface ReviewState {
-    name: string;
-    email: string;
-    rating: number;
-    review: string;
     reviews: Review[];
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
@@ -21,31 +17,43 @@ interface ReviewState {
     postError: string | null;
 }
 
-const initialState:ReviewState = {
-    name: "",
-    email: "",
-    rating: 0,
-    review: "",
-    reviews: [], 
-    status: "idle", 
+const initialState: ReviewState = {
+    reviews: [],
+    status: "idle",
     error: null,
-    postStatus: "idle", 
+    postStatus: "idle",
     postError: null
 };
 
-const postReview = createAsyncThunk(
+export const postReview = createAsyncThunk<
+    Review,
+    Review,
+    { rejectValue: string }
+>(
     'review/postReview',
-    async (reviewData) => {
-            const response = await axios.post('/api/reviews', reviewData);
+    async (reviewData ,{ rejectWithValue }) => {
+        try {
+            const response = await axios.post(`${backendURL}/review`, reviewData);
             return response.data;
+        } catch (error) {
+            return rejectWithValue('Failed to post review');
+        }
     }
 );
 
-export const fetchReviews = createAsyncThunk(
+export const fetchReviews = createAsyncThunk<
+    Review[],
+    string,
+    { rejectValue: string }
+>(
     'review/fetchReviews',
-    async (productId) => {
-            const response = await axios.get(`/api/reviews/${productId}`);
-            return response.data;       
+    async (productId, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${backendURL}/review/${productId}`);
+            return response.data;
+        } catch (error) {
+            return rejectWithValue('Failed to fetch reviews');
+        }
     }
 );
 
@@ -62,20 +70,20 @@ const reviewSlice = createSlice({
                 state.status = "succeeded";
                 state.reviews = action.payload;
             })
-            .addCase(fetchReviews.rejected, (state) => {
+            .addCase(fetchReviews.rejected, (state, action) => {
                 state.status = "failed";
-                state.error = 'An error occurred';
+                state.error = action.payload || 'An error occurred';
             })
             .addCase(postReview.pending, (state) => {
                 state.postStatus = "loading";
             })
-            .addCase(postReview.fulfilled, (state, action:PayloadAction<Review>) => {
+            .addCase(postReview.fulfilled, (state, action: PayloadAction<Review>) => {
                 state.postStatus = "succeeded";
-                state.review(action.payload);
+                state.reviews.push(action.payload);
             })
-            .addCase(postReview.rejected, (state) => {
+            .addCase(postReview.rejected, (state, action) => {
                 state.postStatus = "failed";
-                state.postError = 'An error occurred'
+                state.postError = action.payload || 'An error occurred';
             });
     }
 });
