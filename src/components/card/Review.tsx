@@ -1,45 +1,46 @@
-import { Box, Typography, TextField, FormControl, InputLabel, Select, MenuItem, Button, Grid } from '@mui/material';
+import { Box, Typography, TextField, FormControl, InputLabel, Select, MenuItem, Button, Grid, SelectChangeEvent } from '@mui/material';
 import { useState } from 'react';
 import { useAppDispatch } from '../../redux/hook';
-import postReview from '../../redux/slices/reviewSlice'; 
+import { postReview } from '../../redux/slices/reviewSlice';
 
-export default function Component() {
+export default function Component({productId}:{productId:number} ) {
   const dispatch = useAppDispatch();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [rating, setRating] = useState<number>(0);
-  const [review, setReview] = useState('');
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    rating: 0,
+    review: ''
+  });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: string }>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'rating':
-        setRating(Number(value));
-        break;
-      case 'review':
-        setReview(value);
-        break;
-      default:
-        break;
-    }
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (event: SelectChangeEvent<number>) => {
+    const { name, value } = event.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value as number,
+    }));
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
- 
-    dispatch(postReview({name,email,password,review}));
-    console.log('Form data:',name);
-    setName('');
-    setEmail('');
-    setRating(0);
-    setReview('');
+    const { name, email, rating, review } = formState;
+
+    dispatch(postReview({ name, email, rating, review ,productId}));
+    console.log('Form data:', formState);
+    setFormState({
+      name: '',
+      email: '',
+      rating: 0,
+      review: ''
+    });
   };
 
   return (
@@ -76,8 +77,8 @@ export default function Component() {
               <TextField
                 label="Name"
                 name="name"
-                value={name}
-                onChange={handleChange}
+                value={formState.name}
+                onChange={handleInputChange}
                 required
                 fullWidth
                 sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem' } }}
@@ -88,8 +89,8 @@ export default function Component() {
                 label="Email"
                 name="email"
                 type="email"
-                value={email}
-                onChange={handleChange}
+                value={formState.email}
+                onChange={handleInputChange}
                 required
                 fullWidth
                 sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem' } }}
@@ -101,8 +102,8 @@ export default function Component() {
             <Select
               labelId="rating-label"
               name="rating"
-              value={rating}
-              onChange={handleChange}
+              value={formState.rating}
+              onChange={handleSelectChange}
               id="rating"
               label="Rating"
             >
@@ -118,8 +119,8 @@ export default function Component() {
             name="review"
             multiline
             rows={3}
-            value={review}
-            onChange={handleChange}
+            value={formState.review}
+            onChange={handleInputChange}
             required
             sx={{ width: '100%' }}
           />
