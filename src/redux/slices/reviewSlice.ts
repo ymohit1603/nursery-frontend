@@ -1,9 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-interface Review {
-    id: string;
+export interface Review {
     name: string;
     email: string;
     rating: number;
@@ -59,7 +58,7 @@ const reviewSlice = createSlice({
             .addCase(fetchReviews.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(fetchReviews.fulfilled, (state, action) => {
+            .addCase(fetchReviews.fulfilled, (state, action: PayloadAction<Review[]>) => {
                 state.status = "succeeded";
                 state.reviews = action.payload;
             })
@@ -70,9 +69,9 @@ const reviewSlice = createSlice({
             .addCase(postReview.pending, (state) => {
                 state.postStatus = "loading";
             })
-            .addCase(postReview.fulfilled, (state, action) => {
+            .addCase(postReview.fulfilled, (state, action:PayloadAction<Review>) => {
                 state.postStatus = "succeeded";
-                state.reviews.push(action.payload);
+                state.review(action.payload);
             })
             .addCase(postReview.rejected, (state) => {
                 state.postStatus = "failed";
