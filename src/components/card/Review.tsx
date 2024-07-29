@@ -9,8 +9,8 @@ export default function Component({productId}:{productId:number} ) {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
-    rating: 0,
-    review: ''
+    rating: 5,
+    reviewText: ''
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,15 +31,15 @@ export default function Component({productId}:{productId:number} ) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { name, email, rating, review } = formState;
+    const { name, email, rating, reviewText } = formState;
 
-    dispatch(postReview({ name, email, rating, review ,productId}));
+    dispatch(postReview({ name, email, rating, reviewText ,productId}));
     console.log('Form data:', formState);
     setFormState({
       name: '',
       email: '',
       rating: 0,
-      review: ''
+      reviewText: ''
     });
   };
 
@@ -119,7 +119,7 @@ export default function Component({productId}:{productId:number} ) {
             name="review"
             multiline
             rows={3}
-            value={formState.review}
+            value={formState.reviewText}
             onChange={handleInputChange}
             required
             sx={{ width: '100%' }}

@@ -6,7 +6,7 @@ export interface Review {
     name: string;
     email: string;
     rating: number;
-    review: string;
+    reviewText: string;
 }
 
 interface ReviewState {
@@ -43,7 +43,7 @@ export const postReview = createAsyncThunk<
 
 export const fetchReviews = createAsyncThunk<
     Review[],
-    string,
+    number,
     { rejectValue: string }
 >(
     'review/fetchReviews',

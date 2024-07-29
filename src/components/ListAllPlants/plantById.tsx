@@ -54,7 +54,7 @@ const Plants: React.FC<PlantTypes> = ({
   };
 
   return (
-    <div className="container mx-auto h-1/4 my-5 py-9">
+    <div className="container mx-auto h-1/4 w-full my-5 py-9">
       <div className="grid md:grid-cols-2 h-full items-center gap-6">
         <div className="flex justify-center bg-gray-300 h-full rounded-lg overflow-hidden">
           <img
