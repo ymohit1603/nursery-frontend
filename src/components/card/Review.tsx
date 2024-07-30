@@ -1,17 +1,31 @@
-import { Box, Typography, TextField, FormControl, InputLabel, Select, MenuItem, Button, Grid, SelectChangeEvent } from '@mui/material';
-import { useState } from 'react';
-import { useAppDispatch } from '../../redux/hook';
+import { Box, Typography, TextField, FormControl, InputLabel, Select, MenuItem, Button, Grid, SelectChangeEvent, Alert } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
 import { postReview } from '../../redux/slices/reviewSlice';
 
 export default function Component({productId}:{productId:number} ) {
   const dispatch = useAppDispatch();
-
+  const reviewStatus = useAppSelector(state => state.review.postStatus);
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     rating: 5,
     reviewText: ''
   });
+
+  const [showAlert, setShowAlert] = useState(false);
+
+  useEffect(() => {
+    if (reviewStatus === 'succeeded') {
+      setShowAlert(true);
+      const timer = setTimeout(() => {
+        setShowAlert(false);
+      }, 3000); 
+
+      return () => clearTimeout(timer);
+    }
+  }, [reviewStatus]);
+
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -124,9 +138,16 @@ export default function Component({productId}:{productId:number} ) {
             required
             sx={{ width: '100%' }}
           />
-          <Button type="submit" variant="contained" color="primary">
-            Submit Review
-          </Button>
+          <div className="flex flex-row" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <Button type="submit" variant="contained" color="primary">
+              Submit Review
+            </Button>
+            {showAlert && (
+              <Alert severity="success" sx={{ display: 'inline-flex', alignItems: 'center' }}>
+                Review Added
+              </Alert>
+            )}
+          </div>
         </Box>
       </Box>
     </div>

@@ -54,7 +54,7 @@ const PlantById = () => {
                         {reviewStatus === 'loading' && <div className="w-screen h-screen flex justify-center items-center"><CircularProgress />;</div>}
                         {reviewStatus === 'failed' &&  <Alert className="w-1/3" severity="error">{reviewError}</Alert>}
                         {reviewStatus === 'succeeded' && (        
-                        <div className="bg-black  h-fit "> <CustomerReviews reviews={reviews}/></div>
+                            <div className="h-fit "> {reviews.length>0?<CustomerReviews reviews={reviews}/>:<div><div className="font-bold text-4xl mb-3">No reviews </div><div>This product doesn't have written reviews yet.</div></div> }</div>
                         )}  
                     </div>
                 </div>
