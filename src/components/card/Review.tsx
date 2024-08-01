@@ -52,7 +52,7 @@ export default function Component({productId}:{productId:number} ) {
     setFormState({
       name: '',
       email: '',
-      rating: 0,
+      rating: 5,
       reviewText: ''
     });
   };

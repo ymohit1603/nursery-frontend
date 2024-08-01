@@ -50,15 +50,16 @@ export const AllMedicines = () => {
     return <div>
         <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
              {medicines.length > 0 &&medicines.map((med, index) => (
-                <BuyPlantCard 
+                 <BuyPlantCard 
                      key={index}
                      plantId={med.id}
-                     imgUrl={med.imgUrl||""}
+                     imgUrl={med.imgUrl || ""}
                      name={med.name}
                      price={med.price}
-                     discountedPrice={med.discountedPrice||100}
+                     discountedPrice={med.discountedPrice || 100}
                      cartButton="Add to cart."
-                     discount={med.discount||3}             />
+                     discount={med.discount || 3}
+                     endpoint={"medicines"} />
             ))}
         </div>
     </div>

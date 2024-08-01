@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 interface BuyPlantCardTypes {
-    plantId:number,
+    plantId: number,
+    endpoint:string,
     imgUrl: string;
     name: string;
     price: number;
@@ -11,9 +12,9 @@ interface BuyPlantCardTypes {
     discount: number;
 }
 
-export const BuyPlantCard: React.FC<BuyPlantCardTypes> = ({ plantId,imgUrl, name, discountedPrice, price, cartButton, discount }) => {
+export const BuyPlantCard: React.FC<BuyPlantCardTypes> = ({ plantId,imgUrl, name, discountedPrice, price, cartButton, discount ,endpoint}) => {
     return <div className="relative my-10 flex w-full max-w-sm flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-            <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" to={`/plant/${plantId}`}>
+            <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" to={`/${endpoint}/${plantId}`}>
                 <img className="object-cover" src={imgUrl} alt="product image" />
                 <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
                     {discount}% OFF
@@ -47,7 +48,7 @@ export const BuyPlantCard: React.FC<BuyPlantCardTypes> = ({ plantId,imgUrl, name
                         <span className="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">5.0</span>
                     </div>
                 </div>
-                <Link to={`/plant/:${plantId}`} className="flex items-center justify-center rounded-md bg-slate-900 pr-10 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                <Link to={`/${endpoint}/${plantId}`} className="flex items-center justify-center rounded-md bg-slate-900 pr-10 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none"> </svg>
                 <ShoppingCartIcon className='mr-2'/> { cartButton }</Link >
     </div>

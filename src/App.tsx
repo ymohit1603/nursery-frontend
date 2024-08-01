@@ -33,6 +33,7 @@ function App() {
               <Route path="/plants" element={<Plants />} />
               <Route path="/plant/:id" element={<PlantsById />} />
               <Route path="/medicines" element={<Medicines />} />
+              <Route path="/medicines/:id" element={<PlantsById />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/blog" element={<Blogs />} />
               <Route path="/blog/indoor" element={<IndoorPlant />} />

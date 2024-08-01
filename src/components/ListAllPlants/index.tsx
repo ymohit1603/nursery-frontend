@@ -28,8 +28,7 @@ export const AllPlants = () => {
                         price={plant.price || 20}
                         discountedPrice={plant.discountedPrice || 12}
                         cartButton={plant.cartButton || "button"}
-                        discount={plant.discount || 3}
-                    />
+                        discount={plant.discount || 3} endpoint={"plant"}                    />
                 ))
             }
         </div>

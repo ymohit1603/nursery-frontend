@@ -24,10 +24,9 @@ const PlantById = () => {
     const reviewError = useAppSelector((state) => state.review.error);
   
     useEffect(() => {
-        if (reviewStatus === 'idle') {
+        console.log(`Fetching review for ${numericId}`);
             dispatch(fetchReviews(numericId));
-      }
-    }, [dispatch, numericId, reviewStatus]);
+    }, [ numericId]);
    
     const { plant, error, loading } = useSpecificPlant({ id: numericId });
 
