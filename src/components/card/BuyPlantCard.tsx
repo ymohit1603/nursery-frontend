@@ -16,7 +16,7 @@ interface BuyPlantCardTypes {
 export const BuyPlantCard: React.FC<BuyPlantCardTypes> = ({ plantId,imgUrl, name, discountedPrice, price, discount ,endpoint}) => {
     return <div className="relative my-10 flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <Link className="relative  flex h-44 mt-2 overflow-hidden rounded-xl" to={`/${endpoint}/${plantId}`}>
-                <img className="object-cover" src={imgUrl} alt="product image" />
+                <img className="object-cover w-full" src={imgUrl} alt="product image" />
                 <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
                     {discount}% OFF
                 </span>

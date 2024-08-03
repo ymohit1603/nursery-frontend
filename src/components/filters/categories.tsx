@@ -3,7 +3,7 @@ import { SetStateAction, useState } from "react";
 
 
 const Categories = () => {
-    const [value, setValue] = useState('');
+  const [value, setValue] = useState('');
 
     const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
         setValue(e.target.value);
