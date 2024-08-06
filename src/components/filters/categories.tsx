@@ -1,27 +1,47 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
-import { SetStateAction, useState } from "react";
-
+import { useState } from "react";
 
 const Categories = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | null>(null);
 
-    const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
-        setValue(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+  }
+
+  const handleClick = (newValue: string) => {
+    if (value === newValue) {
+      setValue(null);
     }
+  }
 
-    return <FormControl>
-    <FormLabel id="demo-radio-buttons-group-label">Categories</FormLabel>
-    <RadioGroup
-      aria-labelledby="demo-radio-buttons-group-label"
-        name="radio-buttons-group"
+  return (
+    <FormControl>
+      <FormLabel id="categories-radio-buttons-group-label">Categories</FormLabel>
+      <RadioGroup
+        aria-labelledby="categories-radio-buttons-group-label"
+        name="categories-radio-buttons-group"
         value={value}
         onChange={handleChange}
-    >
-      <FormControlLabel value="Indoor" control={<Radio />} label="Indoor" />
-      <FormControlLabel value="Outdoor" control={<Radio />} label="Outdoor" />
-      <FormControlLabel value="Other" control={<Radio />} label="Other" />
-    </RadioGroup>
-  </FormControl>
+      >
+        <FormControlLabel 
+          value="Indoor" 
+          control={<Radio onClick={() => handleClick("Indoor")} />} 
+          label="Indoor" 
+        />
+        <FormControlLabel 
+          value="Outdoor" 
+          control={<Radio onClick={() => handleClick("Outdoor")} />} 
+          label="Outdoor" 
+        />
+        <FormControlLabel 
+          value="Other" 
+          control={<Radio onClick={() => handleClick("Other")} />} 
+          label="Other" 
+        />
+      </RadioGroup>
+    </FormControl>
+  );
 }
 
 export default Categories;
