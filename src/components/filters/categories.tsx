@@ -1,9 +1,13 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-const Categories = () => {
-  const [value, setValue] = useState<string | null>(null);
+interface categoryTypes {
+  value: string | null
+  setValue: Dispatch<SetStateAction<string | null>>
+}
 
+
+const Categories = ({value,setValue}:categoryTypes) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
