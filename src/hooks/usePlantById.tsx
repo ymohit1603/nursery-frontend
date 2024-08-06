@@ -11,7 +11,7 @@ interface Plant {
     discount: number;
 }
 
-const usePlantById = () => {
+const usePlantById = ({ categoryFilter, priceFilter }: { categoryFilter: string | null,priceFilter:string|null}) => {
     
     const [plants, setPlants] = useState<Plant[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -20,9 +20,15 @@ const usePlantById = () => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     useEffect(() => {
+        console.log("fetching palnt data");
         const fetchPlantsData = async () => {
             try {
-                const response = await axios.get(`${backendUrl}/getPlants`);
+                const response = await axios.get(`${backendUrl}/getPlants`, {
+                    params: {
+                        category: categoryFilter,
+                        price:priceFilter
+                    }
+                });
                 console.log("Response Data:", response.data); 
 
                 if (response.data && Array.isArray(response.data.plants)) {
@@ -40,7 +46,7 @@ const usePlantById = () => {
         };
 
         fetchPlantsData();
-    }, [loading]);
+    }, [backendUrl, categoryFilter, priceFilter]);
 
     return { loading, error, plants };
 }
