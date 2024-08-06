@@ -4,6 +4,7 @@ import nurseryReducer from "./slices/nurserySlice";
 import scrollToContent from "./slices/scrollSlice";
 import blogReducer from "./slices/blogSlice";
 import reviewReducer from "./slices/reviewSlice";
+import plantReducer from './slices/plantSlice'; 
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         scroll: scrollToContent,
         blog: blogReducer,
         review: reviewReducer,
+        plants: plantReducer,
     },
 })
 
