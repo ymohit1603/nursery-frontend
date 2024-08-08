@@ -2,6 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 interface blogTypes{
+    likes: blogTypes | undefined;
+    createdAt: string | number | Date;
+    authorImage: blogTypes | undefined;
+    author: blogTypes | undefined;
+    height: any;
+    width: any;
+    image: blogTypes | undefined;
     title: string,
     content:string
 }

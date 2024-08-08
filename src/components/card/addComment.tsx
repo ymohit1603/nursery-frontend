@@ -1,7 +1,7 @@
 const AddComment = () => {
     return (
         <div className="w-full mt-2 p-0 bg-white rounded-lg ">
-            <div className="font-semibold text-3xl mb-6 text-center text-gray-800 ">Leave a Comment</div>
+            <div className="font-semibold text-3xl mb-6 text-gray-800 ">Leave a Comment</div>
             <form>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">

@@ -5,6 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import AddComment from "../../card/addComment";
+import Comments from "../../card/comments";
 // import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 // const IntroData = {
@@ -80,8 +81,12 @@ const SpecificPlant = ({ endpoints }: { endpoints: string }) => {
                     </CardContent>
                 </Card>
                 </Container>
-            </div>
-            <div className="flex justify-start w-1/2 mx-10"><AddComment/></div>
+                </div>
+                <div className="my-4 mx-10 border-t border-gray-300"></div>
+                <div className="flex justify-start w-1/2 mx-10"><AddComment /></div>
+                <div className="my-4 mx-10 mt-7 border-t border-gray-300"></div>
+                <div className="font-semibold text-3xl mb-6 mt-6 mx-10 text-gray-800">Comments</div>
+            <div className="mx-10 w-2/3"><Comments userName={"Mohit yadav"} postedOn={"08,03 2003"} commentText={"Nice"}/></div>
             </div>
         </div>
     );
