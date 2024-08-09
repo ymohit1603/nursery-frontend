@@ -1,6 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
+interface commentType{
+    content: string,
+    // createdAt:string
+}
+
 interface blogTypes{
     likes: blogTypes | undefined;
     createdAt: string | number | Date;
@@ -10,7 +16,8 @@ interface blogTypes{
     width: any;
     image: blogTypes | undefined;
     title: string,
-    content:string
+    content: string
+    comments:commentType[]
 }
 
 export const useBlogById = ({ endpoints }: { endpoints:string }) => {

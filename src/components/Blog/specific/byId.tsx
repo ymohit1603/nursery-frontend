@@ -15,7 +15,9 @@ import Comments from "../../card/comments";
 
 const SpecificPlant = ({ endpoints }: { endpoints: string }) => {
     const { blog, loading, error } = useBlogById({ endpoints });
-  
+    
+    console.log(blog);
+
     if (loading) return (
         <Container className="flex justify-center items-center h-screen">
             <CircularProgress />
@@ -30,7 +32,12 @@ const SpecificPlant = ({ endpoints }: { endpoints: string }) => {
         </Container>
     );
 
-
+    if (!blog) {
+        return <Alert severity="info" className="w-3/12">
+        No blog found
+    </Alert>
+    }
+    const comments = blog.comments;
     return (
         <div className="w-full flex justify-center">
             <div className="w-2/3 ">
@@ -86,7 +93,20 @@ const SpecificPlant = ({ endpoints }: { endpoints: string }) => {
                 <div className="flex justify-start w-1/2 mx-10"><AddComment /></div>
                 <div className="my-4 mx-10 mt-7 border-t border-gray-300"></div>
                 <div className="font-semibold text-3xl mb-6 mt-6 mx-10 text-gray-800">Comments</div>
-            <div className="mx-10 w-2/3"><Comments userName={"Mohit yadav"} postedOn={"08,03 2003"} commentText={"Nice"}/></div>
+                <div className="mx-10 w-2/3">
+                {comments ? (
+                comments.map((comment:{content:string}, index:number) => (
+                    <Comments 
+                        key={index} 
+                        userName="Mohit Yadav" 
+                        postedOn="20 march, 2003" 
+                        commentText={comment.content} 
+                    />
+                ))
+            ) : (
+                <div>This post has no comments.</div>
+            )}
+                </div>
             </div>
         </div>
     );

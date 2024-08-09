@@ -14,10 +14,14 @@ export const Auth = ({ type }: { type: "Signup" | "Signin" }) => {
     async function sendRequest() {
         console.log(`/user/${type.toLowerCase()} ${backendUrl}`);
         try {
-            const response = await axios.post(`${backendUrl}/user/${type.toLowerCase()}`, Inputs);
-            const jwt = response.data.jwt;
-            localStorage.setItem("token", jwt);
-            navigate('/');
+            const response = await axios.post(`${backendUrl}/user/${type.toLowerCase()}`, Inputs,{
+                withCredentials: true
+            });
+            const jwt = response.data.token;
+            console.log("jwt",jwt);
+            localStorage.setItem("jwt", jwt);
+            document.cookie = `jwt=${jwt};path=/;max-age=3600`; 
+            navigate(-1);
         } catch (error) {
             alert("Error while signing in");
         }
