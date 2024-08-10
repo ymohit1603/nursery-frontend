@@ -6,15 +6,28 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import AddComment from "../../card/addComment";
 import Comments from "../../card/comments";
+import { useEffect, useState } from "react";
 // import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 // const IntroData = {
 //     title: "Introducing the Majestic Monstera",
 //     description: "Discover the captivating beauty and unique features of this iconic houseplant."
 // };
+interface Comment {
+    content: string;
+    name: string;
+    postedOn: string;
+}
 
 const SpecificPlant = ({ endpoints }: { endpoints: string }) => {
     const { blog, loading, error } = useBlogById({ endpoints });
+    const [comments, setComments] = useState<Comment[]>([]);
+
+    useEffect(() => {
+        if (blog && blog.comments) {
+            setComments(blog.comments);
+        }
+    }, [blog]);
     
     console.log(blog);
 
@@ -37,7 +50,11 @@ const SpecificPlant = ({ endpoints }: { endpoints: string }) => {
         No blog found
     </Alert>
     }
-    const comments = blog.comments;
+
+    const handleAddComment = (newComment: { content: string, name: string, postedOn: string }) => {
+        setComments((prevComments) => [...prevComments, newComment]);
+    };
+    
     return (
         <div className="w-full flex justify-center">
             <div className="w-2/3 ">
@@ -90,16 +107,16 @@ const SpecificPlant = ({ endpoints }: { endpoints: string }) => {
                 </Container>
                 </div>
                 <div className="my-4 mx-10 border-t border-gray-300"></div>
-                <div className="flex justify-start w-1/2 mx-10"><AddComment /></div>
+                <div className="flex justify-start w-1/2 mx-10"><AddComment  onAddComment={handleAddComment} /> </div>
                 <div className="my-4 mx-10 mt-7 border-t border-gray-300"></div>
                 <div className="font-semibold text-3xl mb-6 mt-6 mx-10 text-gray-800">Comments</div>
                 <div className="mx-10 w-2/3">
-                {comments ? (
-                comments.map((comment:{content:string}, index:number) => (
+                {comments.length>0 ? (
+                        comments.map((comment: { content: string, name: string, postedOn: string }, index: number) => (
                     <Comments 
                         key={index} 
-                        userName="Mohit Yadav" 
-                        postedOn="20 march, 2003" 
+                        userName={comment.name}
+                        postedOn={Date.now()}
                         commentText={comment.content} 
                     />
                 ))
