@@ -1,16 +1,18 @@
 interface commentsTypes {
     userName: string;
-    postedOn: string;
+    postedOn: number;
     commentText: string;
 }
 
 const Comments = ({ userName, postedOn, commentText }: commentsTypes) => {
+    console.log(userName)
     return (
         <div className="flex mt-3 bg-white ">
             {/* Avatar Section */}
             <div className="flex-shrink-0">
                 <div className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center text-white font-bold">
-                    {userName.charAt(0).toUpperCase()}
+                    {/* {userName.charAt(0).toUpperCase()} */}
+                    A
                 </div>
             </div>
             {/* Comment Content */}
