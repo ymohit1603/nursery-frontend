@@ -19,13 +19,13 @@ export const Auth = ({ type }: { type: "Signup" | "Signin" }) => {
             });
             const jwt = response.data.token;
             console.log("jwt",jwt);
-            localStorage.setItem("jwt", jwt);
-            document.cookie = `jwt=${jwt};path=/;max-age=3600`; 
+            // localStorage.setItem("jwt", jwt);
+            // document.cookie = `jwt=${jwt};path=/;max-age=3600`; 
             navigate(-1);
         } catch (error) {
             alert("Error while signing in");
         }
-        setInputs({ email: "", password: "" });
+        // setInputs({ email: "", password: "" });
     }
 
     return (
