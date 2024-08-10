@@ -2,9 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 
-interface commentType{
+export interface commentType{
+    name:string,
     content: string,
-    // createdAt:string
+    postedOn:string
 }
 
 interface blogTypes{
