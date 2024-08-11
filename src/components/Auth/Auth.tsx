@@ -1,8 +1,11 @@
 import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hook";
+import { signIn } from "../../redux/slices/authSlice";
 
 export const Auth = ({ type }: { type: "Signup" | "Signin" }) => {
+    const dispatch = useAppDispatch();
     const [Inputs, setInputs] = useState({
         email: "",
         password: "",
@@ -18,7 +21,11 @@ export const Auth = ({ type }: { type: "Signup" | "Signin" }) => {
                 withCredentials: true
             });
             const jwt = response.data.token;
-            console.log("jwt",jwt);
+            console.log("jwt", jwt);
+            if (jwt) {
+                dispatch(signIn());
+            }
+         
             // localStorage.setItem("jwt", jwt);
             // document.cookie = `jwt=${jwt};path=/;max-age=3600`; 
             navigate(-1);
