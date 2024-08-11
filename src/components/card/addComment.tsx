@@ -1,6 +1,6 @@
 import { Alert, Button, TextField, Typography, Box } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 interface Comment {
@@ -14,6 +14,7 @@ interface AddCommentProps {
 }
 
 const AddComment = ({ onAddComment }: AddCommentProps) => {
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [content, setContent] = useState('');
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
@@ -30,13 +31,23 @@ const AddComment = ({ onAddComment }: AddCommentProps) => {
 
         try {
             const result = await axios.post(`${backendUrl}/blog/comment`, { name, content, pId }, { withCredentials: true });
+         
             onAddComment(result.data.comment);
             setName('');
             setContent('');
             setStatus("success");
-        } catch (error) {
-            console.error("Error while posting comment:", error);
-            setStatus("error");
+        } catch (error:unknown) {
+            if (axios.isAxiosError(error)) {
+                if (error.response && error.response.status === 401) {
+                    const redirectUrl = (error.response.data as { redirect?: string }).redirect || "/signin";
+                    navigate(redirectUrl);
+                } else {
+                    setStatus("error");
+                }
+            } else {
+                console.error("Unexpected error:", error);
+                setStatus("error");
+            }
         }
     };
 

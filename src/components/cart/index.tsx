@@ -10,8 +10,13 @@ const ShoppingCart: React.FC = () => {
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart.items); 
   const [isEmpty, setIsEmpty] = useState<boolean>(true);
+  const error = useAppSelector((state) => state.cart.error);
 
+  console.log("render");
+ 
   useEffect(() => {
+    console.log(error);
+    console.log("fetching cart data...");
     dispatch(fetchCart());
   }, [dispatch]);
 
@@ -88,7 +93,3 @@ function EmptyCart() {
 }
 
 export default ShoppingCart;
-
-
-
-

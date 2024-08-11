@@ -42,11 +42,7 @@ const Plants: React.FC<PlantTypes> = ({
 
   const addToCartHandler = () => {
     const product = {
-      imgUrl,
-      title,
-      description,
-      currPrice,
-      selectedQuantity,
+      quantity:selectedQuantity,
       plantId
     };
     dispatch(addItemToCart(product));
