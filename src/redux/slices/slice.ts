@@ -1,6 +1,9 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 interface CartItem {
   currPrice: number;
   title: string;
@@ -11,13 +14,9 @@ interface CartItem {
   totalPrice: number;
 }
 
-interface product{
-  imgUrl:string,
-  title:string,
-  description:string,
-  currPrice:number,
-  selectedQuantity: number,
-  plantId:number
+interface Product {
+  quantity: number;
+  plantId: number;
 }
 
 interface CartState {
@@ -36,20 +35,64 @@ const initialState: CartState = {
   error: null,
 };
 
-export const fetchCart = createAsyncThunk("user/fetchCart",async () => {
-  const response = await axios.get(`${process.env.VITE_BACKEND_URL}/user/cart`);
-  return response.data;
-})
+export const fetchCart = createAsyncThunk(
+  "user/fetchCart",
+  async (_, {rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${backendUrl}/user/cart`,{withCredentials:true});
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          return rejectWithValue('Unauthorized access');
+        }
+        return rejectWithValue(error.response?.data?.message || error.message);
+      } else {
+        return rejectWithValue('An unknown error occurred');
+      }
+    }
+  }
+);
 
-export const addItemToCart = createAsyncThunk('cart/addItemToCart', async (item:product) => {
-  const response = await axios.post(`${process.env.VITE_BACKEND_URL}/user/cart`, item);
-  return response.data;
-});
+export const addItemToCart = createAsyncThunk(
+  'cart/addItemToCart',
+  async (item: Product, {  rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${backendUrl}/user/cart`, item,{withCredentials:true});
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+         
+          return rejectWithValue('Unauthorized access');
+        }
+        return rejectWithValue(error.response?.data?.message || error.message);
+      } else {
+        return rejectWithValue('An unknown error occurred');
+      }
+    }
+  }
+);
 
-export const removeItemFromCart = createAsyncThunk('cart/removeItemFromCart', async (id:number) => {
-  const response = await axios.delete(`${process.env.VITE_BACKEND_URL}/${id}`);
-  return response.data;
-});
+export const removeItemFromCart = createAsyncThunk(
+  'cart/removeItemFromCart',
+  async (id: number, {  rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`${backendUrl}/${id}`,{withCredentials:true});
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          return rejectWithValue('Unauthorized access');
+        }
+        return rejectWithValue(error.response?.data?.message || error.message);
+      } else {
+        return rejectWithValue('An unknown error occurred');
+      }
+    }
+  }
+);
+
 
 const cartSlice = createSlice({
   name: "cart",
@@ -57,31 +100,40 @@ const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(fetchCart.pending, (state) => {
-      state.status = 'loading';
-    })
-    .addCase(fetchCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
-      state.status = 'succeeded';
-      state.items = action.payload;
-      state.totalQuantity = action.payload.length;
-      state.totalAmount = action.payload.reduce((sum, item) => sum + item.totalPrice, 0);
-    })
-    .addCase(fetchCart.rejected, (state, action) => {
-      state.status = 'failed';
-      state.error = action.error.message||null;
-    })
-    .addCase(addItemToCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
-      state.items = action.payload;
-      state.totalQuantity = action.payload.length;
-      state.totalAmount = action.payload.reduce((sum, item) => sum + item.totalPrice, 0);
-    })
-    .addCase(removeItemFromCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
-      state.items = action.payload;
-      state.totalQuantity = action.payload.length;
-      state.totalAmount = action.payload.reduce((sum, item) => sum + item.totalPrice, 0);
-    });
+      .addCase(fetchCart.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
+        state.status = 'succeeded';
+        state.items = action.payload;
+        state.totalQuantity = action.payload.length;
+        state.totalAmount = action.payload.reduce((sum, item) => sum + item.totalPrice, 0);
+        state.error = null;
+      })
+      .addCase(fetchCart.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message || 'Failed to fetch cart items.';
+      })
+      .addCase(addItemToCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
+        state.items = action.payload;
+        state.totalQuantity = action.payload.length;
+        state.totalAmount = action.payload.reduce((sum, item) => sum + item.totalPrice, 0);
+        state.error = null;
+      })
+      .addCase(addItemToCart.rejected, (state, action) => {
+        state.error = action.error.message || 'Failed to add item to cart.';
+      })
+      .addCase(removeItemFromCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
+        state.items = action.payload;
+        state.totalQuantity = action.payload.length;
+        state.totalAmount = action.payload.reduce((sum, item) => sum + item.totalPrice, 0);
+        state.error = null;
+      })
+      .addCase(removeItemFromCart.rejected, (state, action) => {
+        state.error = action.error.message || 'Failed to remove item from cart.';
+      });
   }
-    
-  });
-  
-  export default cartSlice.reducer;
+});
+
+export default cartSlice.reducer;

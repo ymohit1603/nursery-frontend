@@ -5,6 +5,7 @@ import scrollToContent from "./slices/scrollSlice";
 import blogReducer from "./slices/blogSlice";
 import reviewReducer from "./slices/reviewSlice";
 import plantReducer from './slices/plantSlice'; 
+import authReducer from './slices/authSlice';
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
         blog: blogReducer,
         review: reviewReducer,
         plants: plantReducer,
+        auth: authReducer,
     },
 })
 
