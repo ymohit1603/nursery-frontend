@@ -1,18 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useAppSelector } from '../../redux/hook';
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
+import {signOut } from '../../redux/slices/authSlice';
+import axios from 'axios';
 
 export const NavBar = () => {
+  const navigate = useNavigate();
   const nurseryRef = useAppSelector((state) => state.scroll.nurseryRef);
-
+  const isSignedIn = useAppSelector((state) => state.auth.isSignedIn);
+  const dispatch = useAppDispatch();
   const scrollToNursery = () => {
     if (nurseryRef) {
       nurseryRef.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  const handleSignIn = () => {
+    navigate("/signin");
+  }
 
+  const handleSignOut = async () => {
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/logout`, {},{withCredentials:true} );
+
+      if (response.status===200) {
+        dispatch(signOut());
+      } else {
+        console.error('Logout failed');
+      }
+    } catch (error) {
+      console.error('An error occurred during logout:', error);
+    }
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -35,7 +55,11 @@ export const NavBar = () => {
         </div>
         <div className='flex space-x-6 justify-end'>
           <div className='border border-black rounded-lg px-3 py-1 hover:bg-gray-200'>
-            <AddNavBar linkTo="/signin"  val={"Signin"} />
+          <AddNavBar
+                linkTo={isSignedIn ? "/" : "/"}
+              val={isSignedIn ? "Log Out" : "Sign In"}
+              onClick={isSignedIn?handleSignOut:handleSignIn}
+            />
           </div>
           <AddNavBar linkTo="/cart" val={<ShoppingCartIcon />} />
         </div>
